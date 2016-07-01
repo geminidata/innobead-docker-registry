@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+    registry:
+      restart: always
+      image: registry:2
+      ports:
+        - 5000:5000
+      environment:
+        REGISTRY_HTTP_SECRET: qpRRxsEPS2rBemoGG2TIldSMXsKOAyW4
+        REGISTRY_HTTP_TLS_CERTIFICATE: /certs/docker-proxy.crt
+        REGISTRY_HTTP_TLS_KEY: /certs/docker-proxy.key
+        REGISTRY_AUTH: htpasswd
+        REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+        REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+      volumes:
+        - /srv/docker_registry/config.yml:/etc/docker/registry/config.yml
+        - /srv/docker_registry/data:/var/lib/registry
+        - /srv/docker_registry/certs:/certs
+        - /srv/docker_registry/auth:/auth
