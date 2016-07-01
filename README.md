@@ -1,6 +1,6 @@
-Please follow below guides, then start services using docker-compose!
+Please follow below guide, then start private Docker registry by **docker-compose**!
 
-## Docker environments
+## Environment
 CentOS 7.2, Docker version 1.11.2, Docker compose 1.7.1 & registry:v2 image
 
 ## Private Docker registry solutions
@@ -27,12 +27,15 @@ update-ca-trust extract
 
 ## Operations
 1. Check images in registry
+
 curl http://<domain-name>:<port>/v2/_catalog
 curl https://<domain-name>:<port>/v2/_catalog
 
 2. Push image to regsitry
+
 docker login <domain-name>:<port>
 docker push <domain-name>:<port>/<image-name>[:<optinal tag>]
 
 3. Pull image from registry
+
 docker pull <domain-name>:<port>/<image-name>[:<optinal tag>]
